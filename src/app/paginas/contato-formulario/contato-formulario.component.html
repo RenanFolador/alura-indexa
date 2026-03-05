@@ -1,0 +1,66 @@
+<app-container>
+    <header>
+        <section class="cabecalho-link">
+            <img src="assets/logo.png" alt="">
+        </section>
+        <section class="cabecalho-contato">
+            <img src="assets/adicionar-contato.png" alt="">
+            <h1>Adicionar contato</h1>
+        </section> 
+    </header>
+
+    <form [formGroup]="contatoForm" (ngSubmit)="salvarContato()">
+        <label for="nome">Nome</label>
+        <input
+            type="text"
+            id="nome"
+            placeholder="Digite o nome do contato"
+            formControlName="nome"
+        />
+        <label for="telefone">Telefone</label>
+        <input
+            type="text"
+            id="telefone"
+            placeholder="Digite o número do telefone"
+            formControlName="telefone"
+        />
+        <label for="email">E-mail</label>
+        <input
+            type="text"
+            id="email"
+            placeholder="Insira o endereço de e-mail do contato"
+            formControlName="email"
+        />
+        <app-separador></app-separador>
+        <label for="aniversario">Data de Nascimento</label>
+        <input
+            type="date"
+            id="aniversario"
+            placeholder="Data de Nascimento"
+            formControlName="aniversario"
+        />
+        <label for="redes-sociais">Redes Sociais</label>
+        <div class="input-container">
+            <span class="span-http">http://</span>
+            <input
+            type="url"
+            id="redes"
+            placeholder="Adicione a url da página"
+            formControlName="redes"
+            />
+        </div>  
+        <label for="observacoes">Observações</label>
+        <textarea 
+            type="text"
+            id="observacoes"
+            placeholder="Coloque observações nesse espaço. Exemplo: Instrutor de Angular"
+            formControlName="observacoes"
+            > 
+        </textarea>
+        <section class="botoes">
+             <button class="botao-cancelar" type="button">Cancelar</button>
+             <button class="botao-salvar" type="submit">Salvar Contato</button>
+         </section>
+
+    </form>
+</app-container>
