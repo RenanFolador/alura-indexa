@@ -18,7 +18,7 @@ header .cabecalho-link img.seta {
   margin: 0 8px;
 }
 
-header .cabecalho-link a {
+header .cabecalho-link span {
   text-decoration: none;
   font-family: 'Montserrat';
   font-size: 18px;
@@ -26,6 +26,13 @@ header .cabecalho-link a {
   line-height: 27px;
   letter-spacing: 0px;
   color: #0D6EFD;
+}
+
+header .cabecalho-link button {
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background: none;
 }
 
 header .cabecalho-contato {

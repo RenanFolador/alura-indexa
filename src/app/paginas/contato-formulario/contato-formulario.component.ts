@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { ContainerComponent } from '../../componentes/container/container.component';
 import { SeparadorComponent } from "../../componentes/separador/separador.component";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgClass } from '@angular/common';
+import { RouterLink, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-contato-formulario',
   standalone: true,
-  imports: [ContainerComponent, SeparadorComponent, ReactiveFormsModule],
+  imports: [ContainerComponent, SeparadorComponent, ReactiveFormsModule, NgClass, RouterOutlet, RouterLink],
   templateUrl: './contato-formulario.component.html',
   styleUrl: './contato-formulario.component.css'
 })
@@ -19,16 +21,14 @@ export class ContatoFormularioComponent {
       nome: new FormControl('', Validators.required),
       telefone: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      aniversao: new FormControl(''),
+      aniversario: new FormControl(''),
       redes: new FormControl(''),
       observacoes: new FormControl('')
     })
   }
 
   salvarContato() {
-    if (this.contatoForm.valid) {
       console.log(this.contatoForm.value)
-    }
   }
 
   cancelarForm() {
