@@ -17,7 +17,8 @@ export class ContatoService {
     {"id": 3, "nome": "Bruno", "telefone": "95 695521583"},
     {"id": 4, "nome": "Beatriz", "telefone": "25 854986459"},
     {"id": 5, "nome": "Carlos", "telefone": "94 543197849"},
-    {"id": 6, "nome": "Daniel", "telefone": "56 613692441"}  
+    {"id": 6, "nome": "Daniel", "telefone": "56 613692441"},
+    {"id": 7, "nome": "Zacarias", "telefone": "56 632595241"}  
   ]
 
   constructor() { 
@@ -25,15 +26,24 @@ export class ContatoService {
     const contatosLocalStorageString = localStorage.getItem('contatos');
     const contatosLocalStorage = contatosLocalStorageString ? JSON.parse(contatosLocalStorageString) : null;
 
-    this.contatos = contatosLocalStorage || null;
+    console.log(this.contatos);
+  
+    this.contatos = contatosLocalStorage || this.contatos;
 
     //Salvar os contatos no localStorage
     localStorage.setItem('contatos', JSON.stringify(this.contatos));
+
+    console.log(this.contatos);
     
   }
 
   obterContatos() {
     return this.contatos;
+  }
+
+  salvarContato(contato: Contato) {
+    this.contatos.push(contato);
+    localStorage.setItem('contatos', JSON.stringify(this.contatos));
   }
 
 }
