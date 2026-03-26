@@ -12,7 +12,7 @@ import { Contato } from '../../componentes/contato/contato';
 @Component({
   selector: 'app-lista-contatos',
   standalone: true,
-  imports: [CommonModule, RouterLink, ContainerComponent, CabecalhoComponent, SeparadorComponent, ContatoComponent, FormsModule, RouterLink],
+  imports: [CommonModule, RouterLink, ContainerComponent, CabecalhoComponent, SeparadorComponent, ContatoComponent, FormsModule],
   templateUrl: './lista-contatos.component.html',
   styleUrl: './lista-contatos.component.css'
 })
@@ -26,7 +26,9 @@ export class ListaContatosComponent implements OnInit{
   constructor (private contatoService: ContatoService) {}
 
   ngOnInit(){
-    this.contatos = this.contatoService.obterContatos();
+    this.contatoService.obterContatos().subscribe(listaContatos => {
+      this.contatos = listaContatos;
+    });
   }
 
   private removerAcentos(texto: string): string {
