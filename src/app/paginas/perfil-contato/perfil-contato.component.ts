@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { ContainerComponent } from "../../componentes/container/container.component";
 import { Contato } from '../../componentes/contato/contato';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-perfil-contato',
   standalone: true,
-  imports: [ContainerComponent],
+  imports: [ContainerComponent, CommonModule],
   templateUrl: './perfil-contato.component.html',
   styleUrl: './perfil-contato.component.css'
 })
