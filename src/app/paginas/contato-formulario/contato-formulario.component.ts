@@ -3,7 +3,7 @@ import { ContainerComponent } from '../../componentes/container/container.compon
 import { SeparadorComponent } from "../../componentes/separador/separador.component";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { Router, RouterLink, RouterOutlet } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from "@angular/router";
 import { ContatoService } from '../../services/contato.service';
 
 @Component({
@@ -19,11 +19,13 @@ export class ContatoFormularioComponent implements OnInit{
 
   constructor(
     private contatoService: ContatoService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(){
     this.iniciarFormulario();
+    this.carregarContato();
   }
 
   iniciarFormulario(){
@@ -37,9 +39,21 @@ export class ContatoFormularioComponent implements OnInit{
     })
   }
 
+  carregarContato(){
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (id){
+      this.contatoService.buscarPorId(parseInt(id)).subscribe((contato) => {
+        this.contatoForm.patchValue(contato)
+      });
+    }
+  }
+
   salvarContato() {
     const novoContato = this.contatoForm.value;
-    this.contatoService.salvarContato(novoContato).subscribe(() => {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    novoContato.id = id ? parseInt(id) : null
+
+    this.contatoService.editarOuSalvarContato(novoContato).subscribe(() => {
       this.contatoForm.reset();
       this.router.navigateByUrl('/lista-contatos');
     });
