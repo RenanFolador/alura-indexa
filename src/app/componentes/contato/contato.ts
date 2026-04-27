@@ -5,5 +5,6 @@ export interface Contato {
   aniversario?: string
   redes?: string
   observacoes?: string
-  id: number
+  id?: number
+  avatar: string |  ArrayBuffer
 }
